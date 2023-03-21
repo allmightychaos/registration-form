@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registierungsformular</title>
+
+    <link rel="stylesheet" href="./src/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Registierungsformular</h1>
+            <p>Erforderliche Felder sind mit * gekennzeichnet</p>
+        </div>
+        <div class="formular">
+            <form>
+                <div id="geschlecht">
+                    <label>Geschlecht*</label>
+                    <option id="male" class="active" value="male">Männlich</option>
+                    <option id="female" class="notactive" value="female">Weiblich</option>
+                </div>
+
+                <div class="input">
+                    <label>Vorname*</label>
+                    <div class="input-container">
+                        <img id="vorname" src="./icons/profile-circle.svg" alt="">
+                        <input type="text" name="vorname" id="vornameFeld" required>
+                        <span class="floating-label">Vorname</span>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <label>Nachname*</label>
+                    <div class="input-container">
+                        <img id="nachname" src="./icons/user-octagon.svg" alt="">
+                        <input type="text" name="nachname" id="nachnameFeld" required>
+                        <span class="floating-label">Nachname</span>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <label>E-Mail*</label>
+                    <div class="input-container">
+                        <img id="email" src="./icons/sms-tracking.svg" alt="">
+                        <input type="text" name="email" id="emailFeld" required>
+                        <span class="floating-label">E-Mail</span>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <label>Passwort*</label>
+                    <div class="input-container">
+                        <img src="./icons/shield.svg" alt="" id="passwordFirst">
+                        <input id="password-First" class="password" type="password" name="password" required>
+                        <span class="floating-label">Passwort</span>
+
+                        <div class="capslockDiv hiddenCapsLock">
+                        <img class="capslock" id="capslockOne" src="./icons/capslock.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input">
+                    <label>Passwort<br>wiederholen*</label>
+                    <div class="input-container">
+                        <img src="./icons/shield.svg" alt="" id="passwordSecond">
+                        <input id="password-Second" class="password" type="password" name="password" required>
+                        <span class="floating-label">Passwort</span>
+                
+                        <div class="capslockDiv hiddenCapsLock">
+                            <img class="capslock" id="capslockTwo" src="./icons/capslock.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="textarea">
+                    <label>Sonstige<br>Anmerkungen</label>
+                    <div class="textareaFeld">
+                        <textarea name="textarea" id="textarea"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="agb">
+            <input type="checkbox" name="agb" id="agb" required>
+            <label id="agbcheck" for="agb">Ich akzeptiere hiermit die <a href="#">AGB</a>.</label>
+        </div>
+
+        <div class="submit">
+            <button class="submitButton" id="reset">Zurücksetzten</button>
+            <button class="submitButton" id="register">Registrieren</button>
+        </div>
+    </div>
+
+    <script src="./src/script.js"></script>
+</body>
+</html>

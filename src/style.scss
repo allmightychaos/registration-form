@@ -1,0 +1,267 @@
+@font-face {
+    font-family: 'Gilroy-Bold';
+    src: url(/fonts/Gilroy-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Gilroy-Semibold';
+    src: url(/fonts/Gilroy-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: 'Gilroy-Medium';
+    src: url(/fonts/Gilroy-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'Gilroy-Regular';
+    src: url(/fonts/Gilroy-Regular.ttf);
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gilroy-Medium';
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin-left: 50px;
+    margin-top: 25px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    width: 600px;
+    min-width: 600px;
+    height: 93vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .error {
+        color: #A64452;
+    }
+
+    .success {
+        color: #4BB543;
+    }
+
+    .header {
+        padding: 10px;
+        padding-top: 35px;
+        width: 90%;
+        border-bottom: 3px solid #f2f2f2;
+        font-family: 'Gilroy-Bold';
+        p {
+            font-family: 'Gilroy-Regular';
+        }
+    }
+
+    .formular {
+        width: 90%;
+        margin-top: 15px;
+        padding-bottom: 15px;   
+        border-bottom: 3px solid #f2f2f2;
+        form {
+
+            label {
+                padding-right: 25px;
+                height: 40px;
+                border-right: 2px solid #f2f2f2;
+                
+                width: 150px;
+
+                display: flex;
+                align-items: center;
+            }
+
+            #geschlecht {
+                display: flex;
+                align-items: center;
+
+                option {
+                    padding: 15px;
+                    width: 170px;
+                    height: 50px;
+                    text-align: center;
+                    margin-left: 10px;
+                    border-radius: 25px;
+                    
+                    font-family: 'Gilroy-Medium';
+                    color: #71767e;
+                    transition: background-color 0.2s ease-in-out;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &:not(.active):hover {
+                        background-color: #F6F6F699;
+                    }
+                }
+
+                .active {
+                    font-family: 'Gilroy-Semibold';
+                    color: black;
+                    background-color: #f6f6f6;
+                }
+            }
+        
+            .input {
+                display: flex;
+                align-items: center;
+                margin-top: 15px;
+                position: relative;
+                transition: 0.2s ease all;
+
+                img {
+                    width: 25px;
+                    height: 25px;
+
+                    position: absolute;
+                    left: 170px;
+                    top: 50%;
+                    transform: translateY(-50%);
+
+                    transition: 0.2s ease all;
+                }
+
+                .capslockDiv {
+                    position: absolute;
+                    left: 515px;
+                    top: 50%;
+                    transform: translateY(-50%);
+
+                    transition: 0.2s ease all;
+                    
+                    background-color: #f6f6f6;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                }
+
+                .capslock {
+                    position: relative;
+                    opacity: .7;
+                    left: 12px;
+                }
+
+                .hiddenCapsLock {
+                    display: none;
+                    opacity: 0;
+                }
+
+                input {
+                    padding: 15px 15px 15px 50px;
+
+                    width: 350px;
+                    height: 50px;
+                    margin-left: 10px;
+                    border-radius: 25px;
+                    border: none;
+                    
+                    font-family: 'Gilroy-Medium';
+                    background-color: #f6f6f6;
+
+                    font-size: 15px;
+                    transition: background-color 0.2s ease-in-out;
+
+                    &:focus {
+                        outline: 2px solid #4b8ad5;
+                    }
+
+                    &.error {
+                        &:focus {
+                            outline: 2px solid #A64452;
+                        }
+                    }
+
+                    &.success {
+                        &:focus {
+                            outline: 2px solid #4BB543;
+                        }
+                    }
+                }
+
+                input:focus ~ .floating-label, input:not(:focus):valid ~ .floating-label {
+                  top: 9px;
+                  font-size: 11px;
+                }
+
+                .floating-label {
+                    position: absolute;
+                    left: 210px;
+                    top: 25px;
+                    opacity: .6;
+                    transform: translateY(-50%);
+                    transition: 0.2s ease all;
+                }
+            }
+
+            .textarea {
+                display: flex;
+                align-items: center;
+                margin-top: 15px;
+
+                textarea {
+                    margin-left: 10px;
+                    padding: 15px;
+                    height: 50px;
+                    width: 350px;
+                    border-radius: 25px;
+                    background-color: #f6f6f6;
+                    border: none;
+                    overflow: hidden;
+                    resize: none;
+
+                    font-family: 'Gilroy-Medium';
+                }
+            }
+        }
+    }
+
+    .agb {
+        margin-top: 15px;
+    }
+
+    .agbError {
+        color: #A64452;
+    }
+
+    .submit {
+        
+        width: 90%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            padding: 15px 25px;
+            border-radius: 25px;
+            border: none;
+            color: white;
+            font-family: 'Gilroy-Bold';
+            font-size: 15px;
+            transition: all 0.2s ease-in-out;
+            width: 40%;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.05);
+            }
+
+        }
+        #register {
+            background-color: #4BB543;
+        }
+        
+        #reset {
+            background-color: #A64452;
+            margin-right: 5%;
+        }
+    }
+}

@@ -15,15 +15,20 @@
             <p>Erforderliche Felder sind mit * gekennzeichnet</p>
         </div>
         <div class="formular">
-            <form>
-                <div id="geschlecht">
-                    <label>Geschlecht*</label>
-                    <option id="male" class="active" value="male">Männlich</option>
-                    <option id="female" class="notactive" value="female">Weiblich</option>
+            <div id="geschlecht">
+                <label for="geschlecht">Geschlecht*</label>
+                <img id="geschlechtImg" src="./icons/gender.svg" alt="">
+                <button onclick="dropdown()" class="dropdownMenu">Bitte wählen...</button>
+                <div id="dropdown" class="dropdown-content">
+                    <p id="male">Männlich</p>
+                    <p id="female">Weiblich</p>
+                    <p id="non">Nicht definiert</p>
+                    <p id="daniel">Daniel</p>
                 </div>
-
+            </div>
+            <form>
                 <div class="input">
-                    <label>Vorname*</label>
+                    <label for="vorname">Vorname*</label>
                     <div class="input-container">
                         <img id="vorname" src="./icons/profile-circle.svg" alt="">
                         <input type="text" name="vorname" id="vornameFeld" required>
@@ -32,7 +37,7 @@
                 </div>
 
                 <div class="input">
-                    <label>Nachname*</label>
+                    <label for="nachname">Nachname*</label>
                     <div class="input-container">
                         <img id="nachname" src="./icons/user-octagon.svg" alt="">
                         <input type="text" name="nachname" id="nachnameFeld" required>
@@ -41,7 +46,7 @@
                 </div>
 
                 <div class="input">
-                    <label>E-Mail*</label>
+                    <label for="email">E-Mail*</label>
                     <div class="input-container">
                         <img id="email" src="./icons/sms-tracking.svg" alt="">
                         <input type="text" name="email" id="emailFeld" required>
@@ -50,7 +55,7 @@
                 </div>
 
                 <div class="input">
-                    <label>Passwort*</label>
+                    <label for="passwort">Passwort*</label>
                     <div class="input-container">
                         <img src="./icons/shield.svg" alt="" id="passwordFirst">
                         <input id="password-First" class="password" type="password" name="password" required>
@@ -63,7 +68,7 @@
                 </div>
 
                 <div class="input">
-                    <label>Passwort<br>wiederholen*</label>
+                    <label for="passwort wiederholen">Passwort<br>wiederholen*</label>
                     <div class="input-container">
                         <img src="./icons/shield.svg" alt="" id="passwordSecond">
                         <input id="password-Second" class="password" type="password" name="password" required>
@@ -76,7 +81,7 @@
                 </div>
 
                 <div class="textarea">
-                    <label>Sonstige<br>Anmerkungen</label>
+                    <label for="sonstiges">Sonstige<br>Anmerkungen</label>
                     <div class="textareaFeld">
                         <textarea name="textarea" id="textarea"></textarea>
                     </div>

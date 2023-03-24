@@ -1,40 +1,42 @@
-/* -- Male Female -- */
+/* -- Gender -- */
+const dropdownChoices = document.getElementById("dropdown");
+const dropdownMenu = document.getElementsByClassName("dropdownMenu")[0];
+const dropdownImage = document.getElementById("geschlechtImg");
+
+
+function dropdown() {
+    dropdownChoices.classList.toggle("show");
+}
+
+window.onclick = function(event) {
+    if (dropdownChoices.classList.contains('show')) {
+        dropdownMenu.classList.toggle("show-menu");
+    }
+    else {
+        dropdownMenu.classList.remove("show-menu");
+    }
+
+    if (!event.target.matches('.dropdownMenu')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+} 
+
 const male = document.getElementById('male');
 const female = document.getElementById('female');
+const non = document.getElementById('non');
+const daniel = document.getElementById('daniel');
 
-female.addEventListener('click', () => {
-    if (female.classList.contains('active')) {
-        female.classList.remove('active');
-        female.classList.add('notactive');
-        
-        male.classList.remove('notactive');
-        male.classList.add('active');
-    }
-    else {
-        female.classList.remove('notactive');
-        female.classList.add('active');
-
-        male.classList.remove('active');
-        male.classList.add('notactive');
-    }
-});
-
-male.addEventListener('click', () => {
-    if (male.classList.contains('active')) {
-        male.classList.remove('active');
-        male.classList.add('notactive');
-
-        female.classList.remove('notactive');
-        female.classList.add('active');
-    }
-    else {
-        male.classList.remove('notactive');
-        male.classList.add('active');
-
-        female.classList.remove('active');
-        female.classList.add('notactive');
-    }
-});
+male.addEventListener('click', () => { dropdownMenu.textContent = 'Männlich'; });
+female.addEventListener('click', () => { dropdownMenu.textContent = 'Weiblich'; });
+non.addEventListener('click', () => { dropdownMenu.textContent = 'Nicht definiert'; });
+daniel.addEventListener('click', () => { dropdownMenu.textContent = 'Daniel'; });
 
 /* -- Input Field -- */
 const vornameImage = document.getElementById('vorname');
@@ -72,12 +74,6 @@ function changeStyles(image, path, opacity) {
 
 /* -- Password -- */
 
-// ! Check if password is at least 8 characters long
-// ! Check if password contains at least one uppercase letter
-// ! Check if password contains at least one lowercase letter
-// ! Check if password contains at least one special character
-
-// Get password fields and floating label
 const passwordImageFirst = document.getElementById('passwordFirst');
 const passwordImageSecond = document.getElementById('passwordSecond');
 const passwordFirst = document.getElementsByClassName('password')[0];
@@ -85,7 +81,6 @@ const passwordSecond = document.getElementsByClassName('password')[1];
 const floatingLabel = document.getElementsByClassName('floating-label')[3];
 const floatingLabel2 = document.getElementsByClassName('floating-label')[4];
 
-// Add event listener to password fields and the spans 
 floatingLabel.addEventListener('click', () => { passwordFirst.focus(); }); 
 floatingLabel2.addEventListener('click', () => { passwordSecond.focus(); });
 
@@ -95,7 +90,7 @@ passwordSecond.addEventListener('blur', validatePasswords);
 function validatePasswords() {
     var passwordCheck1 = false;
     var passwordCheck2 = false;
-    
+
     if (passwordFirst.value.length < 8) {
         floatingLabel.textContent = 'Passwort muss mind. 8 Zeichen lang sein!';
         removeSuccess();
@@ -138,7 +133,6 @@ function validatePasswords() {
     }
 
     if (passwordCheck1 && passwordCheck2) {
-        // Check if passwords match
         if (passwordFirst.value !== passwordSecond.value) {
             floatingLabel.textContent = 'Passwörter stimmen nicht überein!';
             floatingLabel2.textContent = 'Passwörter stimmen nicht überein!';
@@ -146,7 +140,6 @@ function validatePasswords() {
             addError();
         }
         else {
-            // If all checks pass, clear error message and add success class
             floatingLabel.textContent = 'Passwörter stimmen überein!';
             floatingLabel2.textContent = 'Passwörter stimmen überein!'
             removeError();
@@ -312,16 +305,28 @@ const regexAt = /[@]/;
 const regexDot = /[.]/;
 
 submitButton.addEventListener('click', () => {
-    let firstname = document.getElementById('vornameFeld');
-    let lastname = document.getElementById('nachnameFeld');
+    const firstname = document.getElementById('vornameFeld');
+    const lastname = document.getElementById('nachnameFeld');
 
-    let floatingLabelFirstname = document.getElementsByClassName('floating-label')[0];
-    let floatingLabelLastname = document.getElementsByClassName('floating-label')[1];
-    let floatingLabelEmail = document.getElementsByClassName('floating-label')[2];
+    const floatingLabelFirstname = document.getElementsByClassName('floating-label')[0];
+    const floatingLabelLastname = document.getElementsByClassName('floating-label')[1];
+    const floatingLabelEmail = document.getElementsByClassName('floating-label')[2];
 
-    let firstnameImage = document.getElementById('vorname');
-    let lastnameImage = document.getElementById('nachname');
-    let emailImage = document.getElementById('email');
+    const firstnameImage = document.getElementById('vorname');
+    const lastnameImage = document.getElementById('nachname');
+    const emailImage = document.getElementById('email');
+
+    if (dropdownMenu.textContent == 'Bitte wählen...' || dropdownMenu.textContent == 'Sie müssen ein Geschlecht auswählen!') {
+        dropdownMenu.textContent = 'Sie müssen ein Geschlecht auswählen!';
+        dropdownImage.src = './icons/red.svg';
+        dropdownMenu.classList.remove('success');
+        dropdownMenu.classList.add('error');
+    }
+    else {
+        dropdownMenu.classList.remove('error');
+        dropdownMenu.classList.add('success');
+        dropdownImage.src = './icons/green.svg';
+    }
 
     if (firstname.value == '') {
         addRemoveClass(floatingLabelFirstname, firstname);
@@ -331,7 +336,7 @@ submitButton.addEventListener('click', () => {
         addRemoveClass(floatingLabelFirstname, firstname);
         firstnameImage.src = './icons/profile-circle-green.svg';
     }
-    
+
     if (lastname.value == '') {
         addRemoveClass(floatingLabelLastname, lastname);
         lastnameImage.src = './icons/user-octagon-red.svg';
@@ -341,7 +346,7 @@ submitButton.addEventListener('click', () => {
         lastnameImage.src = './icons/user-octagon-green.svg';
     }
 
-    let emailSubstr = email.value.substr(email.value.indexOf('@') + 1);
+    const emailSubstr = email.value.substr(email.value.indexOf('@') + 1);
 
     if (!regexAt.test(email.value) && regexDot.test(email.value)) {
         emailImage.src = './icons/sms-tracking-red.svg';
@@ -379,7 +384,7 @@ submitButton.addEventListener('click', () => {
     if (passwordFirst.value == '' && passwordSecond.value == '') {
         addRemoveClass(floatingLabel, passwordFirst);
         addRemoveClass(floatingLabel2, passwordSecond);
-       
+    
         passwordImageFirst.src = './icons/shield-cross.svg';
         passwordImageSecond.src = './icons/shield-cross.svg';
     }
@@ -422,36 +427,39 @@ submitButton.addEventListener('click', () => {
         document.getElementById('agbcheck').classList.remove('agbError');
     }
 
-    if (firstname.value !== '' && lastname.value !== '' && email.value !== '' && passwordFirst.value !== '' && passwordSecond.value !== '' && checkboxCheck == true) {
+    if (dropdownMenu.classList.contains('success') && firstname.value !== '' && lastname.value !== '' && email.value !== '' && passwordFirst.value !== '' && passwordSecond.value !== '' && checkboxCheck == true) {
         alert('Erfolgreich registriert!');
     }
 });
 
 resetButton.addEventListener('click', () => {
-    let resultVorname = document.getElementById('vornameFeld');
-    let vornameImage = document.getElementById('vorname');
+    const dropdownMenu = document.getElementsByClassName("dropdownMenu")[0];
+    const dropdownImage = document.getElementById("geschlechtImg");
 
-    let resultNachname = document.getElementById('nachnameFeld');
-    let nachnameImage = document.getElementById('nachname');
+    const resultVorname = document.getElementById('vornameFeld');
+    const vornameImage = document.getElementById('vorname');
 
-    let resultEmail = document.getElementById('emailFeld');
-    let emailImage = document.getElementById('email');
+    const resultNachname = document.getElementById('nachnameFeld');
+    const nachnameImage = document.getElementById('nachname');
 
-    let password0 = document.getElementsByClassName('password')[0];
-    let passwordImage0 = document.getElementById('passwordFirst');
-    
-    let password1 = document.getElementsByClassName('password')[1];
-    let passwordImage1 = document.getElementById('passwordSecond');
+    const resultEmail = document.getElementById('emailFeld');
+    const emailImage = document.getElementById('email');
 
-    let floatingLabel1 = document.getElementsByClassName('floating-label')[0];
-    let floatingLabel2 = document.getElementsByClassName('floating-label')[1];
-    let floatingLabel3 = document.getElementsByClassName('floating-label')[2];
-    let floatingLabel4 = document.getElementsByClassName('floating-label')[3];
-    let floatingLabel5 = document.getElementsByClassName('floating-label')[4];
+    const password0 = document.getElementsByClassName('password')[0];
+    const passwordImage0 = document.getElementById('passwordFirst');
 
-    let agbCheck = document.getElementById('agbCheck');
+    const password1 = document.getElementsByClassName('password')[1];
+    const passwordImage1 = document.getElementById('passwordSecond');
 
-    let textarea = document.getElementById('textarea');
+    const floatingLabel1 = document.getElementsByClassName('floating-label')[0];
+    const floatingLabel2 = document.getElementsByClassName('floating-label')[1];
+    const floatingLabel3 = document.getElementsByClassName('floating-label')[2];
+    const floatingLabel4 = document.getElementsByClassName('floating-label')[3];
+    const floatingLabel5 = document.getElementsByClassName('floating-label')[4];
+
+    const agbCheck = document.getElementById('agbcheck');
+
+    const textarea = document.getElementById('textarea');
 
     resultVorname.value = '';
     resultNachname.value = '';
@@ -460,6 +468,7 @@ resetButton.addEventListener('click', () => {
     password0.value = '';
     password1.value = '';
 
+    dropdownMenu.textContent = 'Bitte wählen...';
     floatingLabel1.textContent = 'Vorname';
     floatingLabel2.textContent = 'Nachname';
     floatingLabel3.textContent = 'E-Mail';
@@ -469,12 +478,16 @@ resetButton.addEventListener('click', () => {
     agb.checked = false;
 
     textarea.value = '';
-    
+
+    dropdownImage.src = './icons/gender.svg'
     vornameImage.src = './icons/profile-circle.svg';
     nachnameImage.src = './icons/user-octagon.svg';
     emailImage.src = './icons/sms-tracking.svg';
     passwordImage0.src = './icons/shield.svg';
     passwordImage1.src = './icons/shield.svg';
+
+    dropdownMenu.classList.remove('success');
+    dropdownMenu.classList.remove('error');
 
     resultVorname.classList.remove('success');
     resultVorname.classList.remove('error');

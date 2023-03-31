@@ -182,7 +182,6 @@ function validatePasswords() {
         floatingLabel.classList.remove('error');
         floatingLabel2.classList.remove('error');
     }
-
     function testUppercase(value, Label) {
         if (!/[A-Z]/.test(value)) {
             Label.textContent = 'Passwort muss mind. einen Großbuchstaben enthalten!';
